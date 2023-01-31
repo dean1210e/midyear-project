@@ -19,8 +19,8 @@ basket = turtle.Turtle()
 basket.showturtle()
 basket.penup()
 basket.goto(0,150)
-wn.register_shape("hoopl.gif")
-basket.shape("hoopl.gif")
+wn.register_shape("hoop1.gif")
+basket.shape("hoop1.gif")
 
 #ball turtle
 
