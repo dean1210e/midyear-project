@@ -48,23 +48,13 @@ pen2.hideturtle()
 pen2.goto(100, -230)
 pen2.write("Shots: 0", font=("Helvetica", 30 ))
 
-#accuracy title
+#accuracy turtle
 
 pen3 = turtle.Turtle()
 pen3.penup()
 pen3.hideturtle()
 pen.goto(-330,200)
 pen3.write("Accuracy: 0", font=("Helvetica", 30))
-
-pen2.goto(100,-230)
-pen2.write('Shots:0', font=('Helvetica',24,'bold'))
-
-#accuracy turtle
-pen3 = turtle.Turtle()
-pen3.penup()
-pen3.hideturtle()
-pen3.goto(-330,200)
-pen3.write('Accuracy:0', font=('Helvetica',24,'bold'))
 
 #Functions
 def shoot():
