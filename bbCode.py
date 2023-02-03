@@ -37,6 +37,7 @@ pen = turtle.Turtle()
 ball.penup()
 ball.hideturtle()
 pen.penup()
+
 pen.goto(-330, -230)
 pen.write("Score: 0", font =('Helvetica', 30))
 
