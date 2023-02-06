@@ -9,16 +9,16 @@ screen = pygame.display.set_mode((width, height))
 gameOn = True
 
 
-background = pygame.image.load("assets/images/background.png")
+background = pygame.image.load("assets/images/basketball background.gif")
 bg_width = background.get_rect().width
 bg_height =background.get_rect().height
 background = pygame.transform.scale(background, (bg_width/1.7, bg_height/1.3))
 
 
-base = pygame.image.load("assets/images/road.png")
-base_width = base.get_rect().width
-base_height = base.get_rect().height
-base = pygame.transform.scale(base, (base_width*2.6, base_height*2.6))
+# base = pygame.image.load("assets/images/road.png")
+# base_width = base.get_rect().width
+# base_height = base.get_rect().height
+# base = pygame.transform.scale(base, (base_width*2.6, base_height*2.6))
 
 def main():
     gameOn = True
