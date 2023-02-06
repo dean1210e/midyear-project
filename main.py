@@ -32,7 +32,7 @@ def main():
                 gameOn = False
 
         screen.blit(background, (0, 0))
-        screen.blit(base, (baseX, baseY))
+        # screen.blit(base, (baseX, baseY))
         pygame.display.update()
 
 if __name__ == "__main__":
