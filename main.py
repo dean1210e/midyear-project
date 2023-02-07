@@ -3,8 +3,8 @@ import pygame
 pygame.init()
 
 # global variable
-width = 700
-height = 550
+width = 1024
+height = 576
 screen = pygame.display.set_mode((width, height))
 gameOn = True
 
@@ -12,7 +12,8 @@ gameOn = True
 background = pygame.image.load("assets/images/basketballbg.gif")
 bg_width = background.get_rect().width
 bg_height =background.get_rect().height
-background = pygame.transform.scale(background, (bg_width/1.7, bg_height/1.3))
+# background = pygame.transform.scale(background, (bg_width/1.7, bg_height/1.3))
+
 
 
 # base = pygame.image.load("assets/images/road.png")
