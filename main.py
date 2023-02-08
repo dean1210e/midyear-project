@@ -8,6 +8,9 @@ screen = pygame.display.set_mode((width, height))
 fps = 20
 clock = pygame.time.Clock()
 
+#colors
+red = (255,0,0)
+black = (0,0,0)
 
 background = pygame.image.load("assets/images/basketballbg.gif")
 bg_width = background.get_rect().width
@@ -31,6 +34,17 @@ def main():
     ballY = baseY - 60
     gravity = 10
     bouncing = 25
+    baseX_vel = 0
+    baseY_vel = 0
+    gameover= False
+    score = 0
+    speed = 0
+    basket_score = 0
+    score = 0
+    speed_accelerating = False
+    basketX = 0
+    basketY = 0
+    ScreenText = 0
 
     while gameOn:
         # taking event
@@ -55,6 +69,18 @@ def main():
 
         pygame.display.update()
         clock.tick(fps)
+
+        #ball in basket
+        # if(ballX+ball.get_width() >= basketX and ballX <= basketX.basket.get_width and ballY > basketY and ballY <= basketY.basket.get_height()):
+        #     basket_score += 100
+
+        speed += 0.001
+        #speeding up score
+        score += int(speed)
+
+        #displaying text
+        # ScreenText(f"Score{score}", black, 10,40,size=20)
+        # ScreenText(f"Basket Score{basket_score}")
 
 if __name__ == "__main__":
     main()
