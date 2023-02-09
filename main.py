@@ -44,7 +44,7 @@ def main():
     speed_accelerating = False
     basketX = 0
     basketY = 0
-    ScreenText = 0
+    
 
     while gameOn:
         # taking event
@@ -79,8 +79,8 @@ def main():
         score += int(speed)
 
         #displaying text
-        # ScreenText(f"Score{score}", black, 10,40,size=20)
-        # ScreenText(f"Basket Score{basket_score}")
+        Screen(f"Score{score}", black, 10,40,size=20)
+        (f"Basket Score{basket_score}")
 
 if __name__ == "__main__":
     main()
