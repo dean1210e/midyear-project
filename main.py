@@ -25,9 +25,7 @@ background = pygame.transform.scale(background, (bg_width/1.7, bg_height/1.3))
 def main():
     gameOn = True
     baseX = 0
-<<<<<<< HEAD
     baseY = 420
-=======
     baseY = 470
     ballX = 120
     ballY = baseY - 60
@@ -44,7 +42,6 @@ def main():
     basketX = 0
     basketY = 0
     ScreenText = 0
->>>>>>> 4ccf79c5bd1a455dfe0ea6f1d4e6e46ce67f882f
 
     while gameOn:
         # taking event
