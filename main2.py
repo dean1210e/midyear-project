@@ -2,8 +2,8 @@ import pygame
 
 pygame.init()
 
-width=700
-height=550
+width = 1024
+height = 576
 
 background = pygame.image.load("assets/images/background.gif")
 
@@ -15,8 +15,8 @@ basketball = pygame.image.load("assets/images/basketball.png")
 
 def main():
     gameOn = True
-    baseX=0
-    baseY=height-60
+    baseX= 0
+    baseY= height-60
     ballX = 120
     ballY = baseY - 60
     gravity = 10
