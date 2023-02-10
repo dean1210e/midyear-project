@@ -1,46 +1,46 @@
-import pygame
+# import pygame
 
-pygame.init()
+# pygame.init()
 
-width = 1024
-height = 576
+# width = 1024
+# height = 576
 
-background = pygame.image.load("assets/images/background.gif")
-
-
-screen = pygame.display.set_mode((width,height))
-base = pygame.image.load("assets/images/base.png")
-basketball = pygame.image.load("assets/images/basketball.png")
+# background = pygame.image.load("assets/images/background.gif")
 
 
-def main():
-    gameOn = True
-    baseX= 0
-    baseY= height-60
-    ballX = 120
-    ballY = baseY - 60
-    gravity = 10
-    bouncing = 25
+# screen = pygame.display.set_mode((width,height))
+# base = pygame.image.load("assets/images/base.png")
+# basketball = pygame.image.load("assets/images/basketball.png")
 
 
-    while gameOn:
+# def main():
+#     gameOn = True
+#     baseX= 0
+#     baseY= height-60
+#     ballX = 120
+#     ballY = baseY - 60
+#     gravity = 10
+#     bouncing = 25
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                gameOn = False
+
+#     while gameOn:
+
+#         for event in pygame.event.get():
+#             if event.type == pygame.QUIT:
+#                 gameOn = False
 
         
-        screen.blit(background, (0,0))
-        screen.blit (base, (baseX,baseY))
-        screen.blit(basketball, (ballX,ballY))
+#         screen.blit(background, (0,0))
+#         screen.blit (base, (baseX,baseY))
+#         screen.blit(basketball, (ballX,ballY))
 
-        ballY -= bouncing
-        bouncing -= 1
-        ballY += gravity
+#         ballY -= bouncing
+#         bouncing -= 1
+#         ballY += gravity
 
-        pygame.display.update()
+#         pygame.display.update()
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
 
