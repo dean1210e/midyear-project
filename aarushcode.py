@@ -21,7 +21,7 @@ ball_width = ball.get_rect().width
 ball_height = ball.get_rect().height
 ball = pygame.transform.scale(ball, (ball_width/16.5, ball_height/16.5))
 
-bg_img = pygame.image.load("assets/images/bg.png")
+bg_img = pygame.image.load("assets/images/background.gif")
 bg_img = pygame.transform.scale(bg_img,(700,700))
 
 def main():
