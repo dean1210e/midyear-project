@@ -27,7 +27,7 @@ screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Basketball")
 pygame.init()
   
-RED = (167, 255, 244)
+RED = (SURFACE_COLOR)
   
 size = (WIDTH, HEIGHT)
 screen = pygame.display.set_mode(size)
@@ -35,11 +35,15 @@ pygame.display.set_caption("Basketball")
   
 all_sprites_list = pygame.sprite.Group()
 
-  
+hoop=pygame.image.load("assets/images/hoops.png")
+hoop_width = hoop.get_rect().width
+hoop_height =hoop.get_rect().height
+hoop = pygame.transform.scale(hoop, (hoop_width/6, hoop_height/6))
+
 ball = pygame.image.load("assets/images/basketball.png")
 ball_width = ball.get_rect().width
 ball_height = ball.get_rect().height
-ball = pygame.transform.scale(ball, (ball_width/20, ball_height/20))
+ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
 object_ = Sprite(RED,20,20)
 object_.rect.x = WIDTH/2
@@ -51,7 +55,7 @@ floor_=Sprite(WHITE,HEIGHT/2,WIDTH)
 floor_.rect.x=0
 floor_.rect.y=HEIGHT/2+20
 
-GREEN = (90,250,20)
+GREEN = (SURFACE_COLOR)
 hoop_=Sprite(GREEN,35,35)
 hoop_.rect.x=random.randint(35,1415)
 hoop_.rect.y=HEIGHT/2-150
@@ -82,6 +86,8 @@ while exit:
                 draglog=True
             
             else:
+                stoptrig=False
+                downdrop=True
                 movedone=False
                 intdif=0
                 trigger=True
@@ -94,7 +100,8 @@ while exit:
    
         
         
-    screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-16))
+    screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
+    screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
     
     
 
@@ -141,6 +148,7 @@ while exit:
 
         stoptrig=True
         hoop_.rect.x=random.randint(35,1415)
+        
 
     reflec_trigger1=True
     reflec_trigger2=True
