@@ -45,6 +45,12 @@ ball_width = ball.get_rect().width
 ball_height = ball.get_rect().height
 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
+
+ 
+
+
+
+
 object_ = Sprite(RED,20,20)
 object_.rect.x = WIDTH/2
 object_.rect.y = HEIGHT/2
@@ -98,8 +104,6 @@ while exit:
     if draglog==True:
         object_.rect.x,object_.rect.y=pygame.mouse.get_pos()
    
-        
-        
     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
     
@@ -147,7 +151,7 @@ while exit:
 
 
         stoptrig=True
-        hoop_.rect.x=random.randint(35,1415)
+        hoop_.rect.x=random.randint(0,1415)
         
 
     reflec_trigger1=True
