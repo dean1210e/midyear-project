@@ -12,17 +12,23 @@ clock = pygame.time.Clock()
 red = (255,0,0)
 black = (0,0,0)
 
+# bg_img = pygame.image.load("assets/images/sky.jpg")
+# bg_img = pygame.transform.scale(bg_img,(734,387))
+
+background = pygame.image.load("assets/images/sky.jpg")
+bg_img = background.get_rect().width
+bg_img =background.get_rect().height
+
 basket = pygame.image.load("assets/images/basket.png")
 basket_width = basket.get_rect().width
 basket_height =basket.get_rect().height
 
-ball = pygame.image.load("assets/images/basketball.png")
+ball = pygame.image.load("assets/images/basketball1.png")
 ball_width = ball.get_rect().width
 ball_height = ball.get_rect().height
 ball = pygame.transform.scale(ball, (ball_width/16.5, ball_height/16.5))
 
-bg_img = pygame.image.load("assets/images/background.gif")
-bg_img = pygame.transform.scale(bg_img,(700,700))
+
 
 def main():
     gameOn = True
