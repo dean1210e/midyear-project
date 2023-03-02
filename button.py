@@ -15,8 +15,8 @@ class Button():
 
                 if self.rect.collidepoint(pos):
                         
-                        playhover = pygame.image.load('assets/images/playhover.png').convert_alpha()
-                        self.image = pygame.transform.scale(playhover, (int(self.width * self.scale ), int(self.height * self.scale )))
+                        # playhover = pygame.image.load('assets/images/playhover.png').convert_alpha()
+                        # self.image = pygame.transform.scale(playhover, (int(self.width * self.scale ), int(self.height * self.scale )))
                         
                         
                         # quithover = pygame.image.load('assets/images/quithover.png').convert_alpha()
