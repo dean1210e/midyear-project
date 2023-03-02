@@ -46,15 +46,13 @@ class Button():
 def hover(self, surface):
         pos = pygame.mouse.get_pos()
 
-
         if self.rect.collidepoint(pos):
-
-                        
+                
                 playhover = pygame.image.load('assets/images/playhover.png').convert_alpha()
                 self.image = pygame.transform.scale(playhover, (int(self.width * self.scale ), int(self.height * self.scale )))
-
-        else: 
-                print("HELLO")
-                start_img = pygame.image.load('assets/images/playbutton.png').convert_alpha()
-                self.image = pygame.transform.scale(start_img, (int(self.width * self.scale ), int(self.height * self.scale )))
+        else:
+                playbutton = pygame.image.load('assets/images/playbutton.png').convert_alpha()
+                self.image = pygame.transform.scale(playbutton, (int(self.width * self.scale ), int(self.height * self.scale )))
+        
+                
 
