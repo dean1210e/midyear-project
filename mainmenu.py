@@ -5,7 +5,7 @@ screen_height = 900
 screen_width= 1440
 
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Button Demo")
+pygame.display.set_caption("Basketball")
 
 background = pygame.image.load('assets/images/menubg.jpg')
 title = pygame.image.load('assets/images/title.png')
@@ -30,8 +30,8 @@ while run:
 
 
         if start_button.draw(screen):
-                print("START")
-                
+                print("The button works")
+
         if quit_button.draw(screen):
                 run = False
 
