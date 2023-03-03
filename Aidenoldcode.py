@@ -3,12 +3,6 @@ import pygame
 import random
 import math
 from spirte import Sprite
-
-black=(0,0,0)
-
-
-    
-
 testlist=[]
 downdrop=False
 bouncelvl=250
@@ -86,7 +80,7 @@ trigger=False
 clock = pygame.time.Clock()
 
 
-intdif=1
+
  
 # create a rectangular object for the
 
@@ -96,42 +90,14 @@ while exit:
     for event in ev:
 
     # handle MOUSEBUTTONUP
-        if draglog==True and trigger==False:
-            coordx,coordy=pygame.mouse.get_pos()
-            coordx-=25
-            vertpx=object_.rect.x+object_.rect.x-coordx
-            vertpy=(HEIGHT/2)-(object_.rect.y-coordy+object_.rect.y)
-            
-            print(2*vertpx-object_.rect.x)
-            
-            
-            if vertpx-object_.rect.x>=0:
-                pygame.draw.arc(screen,black,[object_.rect.x+8,HEIGHT/2-vertpy,2*(vertpx-object_.rect.x+8),HEIGHT-2*(HEIGHT/2-vertpy)],math.pi/2,math.pi,2)
-            else:
-                pygame.draw.arc(screen,black,[object_.rect.x-2*(object_.rect.x-vertpx)+5.5,HEIGHT/2-vertpy,2*(object_.rect.x-vertpx)+5.5,HEIGHT-2*(HEIGHT/2-vertpy)],0,math.pi/2,2)
-           
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print("hi")
             draglog=True
+        elif event.type==pygame.MOUSEBUTTONUP:
+            coordx,coordy=pygame.mouse.get_pos()
+            vertpx=object_.rect.x+object_.rect.x-coordx
+            vertpy=object_.rect.y-coordy+object_.rect.y
             
-        elif event.type==pygame.MOUSEBUTTONUP and trigger==False:
-            draglog=False
-            intdif=1
-            
-       
-            if object_.rect.y-coordy>=0:
-                continue
-            else:
-                
-                test=vertpy/4
-                thing=vertpx-object_.rect.x
-                trigger=True
-            
-
-
-            
-
             
         
 
@@ -147,28 +113,31 @@ while exit:
         if event.type == pygame.QUIT:
             exit = False
     keys = pygame.key.get_pressed()
-   
+    if movedone==False:
+        if keys[pygame.K_LEFT] and reflec_trigger2:
+            trigger=True
+            intdif=-1
+        elif keys[pygame.K_RIGHT] and reflec_trigger1:
+            trigger = True
+            intdif=1
+        elif keys[pygame.K_UP] and reflec_trigger3:
+            trigger=True
+            intdif=0
     
     
     
 
     if trigger:
-
         myx+=4
         
 
-        
-        
-       
-
-        object_.rect.x += intdif*(thing/test)
-        
+        object_.rect.x += intdif*2
         
 
-        object_.rect.y =(1/vertpy)*((myx-vertpy)**2)+((HEIGHT/2)-vertpy)
+        object_.rect.y =(1/bouncelvl)*((myx-bouncelvl)**2)+((HEIGHT/2)-bouncelvl)
         testlist.append(object_.rect.y)
     
-    if object_.rect.y==math.floor(HEIGHT/2-vertpy) and hoop_.rect.y>=math.floor(HEIGHT/2-vertpy):
+    if object_.rect.y==math.floor(HEIGHT/2-bouncelvl) and hoop_.rect.y>=math.floor(HEIGHT/2-bouncelvl):
        
         downdrop=True
     
@@ -198,11 +167,11 @@ while exit:
 
         myx=0
         downdrop=False
-     
+        print(min(testlist))
         testlist=[]
         stoptrig=False
-        vertpy=vertpy/1.4
-        if vertpy<=1:
+        bouncelvl=bouncelvl/1.4
+        if bouncelvl<=1:
             trigger=False
             movedone=True
             
@@ -216,7 +185,6 @@ while exit:
      
         intdif*=-1
         reflec_trigger2=False
-        object_.rect.x=8
     
 
   # proceed events
@@ -225,7 +193,7 @@ while exit:
     
     
         
-    pygame.display.update()
+       
 
 
  
@@ -234,7 +202,7 @@ while exit:
     
 
 
-    
+    pygame.display.update()
     all_sprites_list.update()
     screen.fill(SURFACE_COLOR)
     all_sprites_list.draw(screen)
