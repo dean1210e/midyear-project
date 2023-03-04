@@ -5,6 +5,9 @@ import math
 from spirte import Sprite
 testlist=[]
 downdrop=False
+o=0
+for i in range (0,9):
+    o = 1
 bouncelvl=250
 draglog=False
 
