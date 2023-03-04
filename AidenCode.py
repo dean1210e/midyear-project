@@ -13,6 +13,7 @@ testlist=[]
 downdrop=False
 bouncelvl=250
 draglog=False
+pointstop=False
 
 coordx=0
 coordy=0
@@ -92,30 +93,26 @@ intdif=1
 
 
 while exit:
+    if trigger==False:
+        pointstop=False
     ev = pygame.event.get()
     for event in ev:
 
     # handle MOUSEBUTTONUP
+    
         if draglog==True and trigger==False:
             coordx,coordy=pygame.mouse.get_pos()
-            coordx-=25
+            coordx-=10
             vertpx=object_.rect.x+object_.rect.x-coordx
             vertpy=(HEIGHT/2)-(object_.rect.y-coordy+object_.rect.y)
-            
-            print(2*vertpx-object_.rect.x)
-            
-            
-            if vertpx-object_.rect.x>=0:
-                pygame.draw.arc(screen,black,[object_.rect.x+8,HEIGHT/2-vertpy,2*(vertpx-object_.rect.x+8),HEIGHT-2*(HEIGHT/2-vertpy)],math.pi/2,math.pi,2)
-            else:
-                pygame.draw.arc(screen,black,[object_.rect.x-2*(object_.rect.x-vertpx)+5.5,HEIGHT/2-vertpy,2*(object_.rect.x-vertpx)+5.5,HEIGHT-2*(HEIGHT/2-vertpy)],0,math.pi/2,2)
-           
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            print("hi")
+            
+        if event.type == pygame.MOUSEBUTTONDOWN and trigger==False:
+
             draglog=True
             
         elif event.type==pygame.MOUSEBUTTONUP and trigger==False:
+            pointstop=False
             draglog=False
             intdif=1
             
@@ -155,13 +152,15 @@ while exit:
     if trigger:
 
         myx+=4
+
         
 
         
         
        
 
-        object_.rect.x += intdif*(thing/test)
+        if pointstop==False:
+            object_.rect.x += intdif*(thing/test)
         
         
 
@@ -178,11 +177,18 @@ while exit:
     
     if hoop_.rect.x<=object_.rect.x+10<=hoop_.rect.x+35 and 315<=object_.rect.y+10<=340 and stoptrig==False and downdrop==True:
 
-        counter+=1
+        if pointstop==False:
+            counter+=1
+
+
+        print(counter)
+        pointstop=True
+        object_.rect.x=hoop_.rect.x+10
+        
 
 
         stoptrig=True
-        hoop_.rect.x=random.randint(0,1415)
+   
         
 
     reflec_trigger1=True
@@ -201,7 +207,7 @@ while exit:
      
         testlist=[]
         stoptrig=False
-        vertpy=vertpy/1.4
+        vertpy=vertpy/1.6
         if vertpy<=1:
             trigger=False
             movedone=True
@@ -238,6 +244,13 @@ while exit:
     all_sprites_list.update()
     screen.fill(SURFACE_COLOR)
     all_sprites_list.draw(screen)
+    if draglog==True and trigger==False:
+        if vertpx-object_.rect.x>=0:
+                    pygame.draw.arc(screen,black,[object_.rect.x+8,HEIGHT/2-vertpy,2*(vertpx-object_.rect.x),HEIGHT-2*(HEIGHT/2-vertpy)],math.pi/2,math.pi,2)
+        else:
+                    pygame.draw.arc(screen,black,[object_.rect.x-2*(object_.rect.x-vertpx)+10,HEIGHT/2-vertpy,2*(object_.rect.x-vertpx),HEIGHT-2*(HEIGHT/2-vertpy)],0,math.pi/2,2)
+           
+
     
     
     clock.tick(60)
