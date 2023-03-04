@@ -16,7 +16,7 @@ start_img = pygame.image.load('assets/images/playbutton.png').convert_alpha()
 quit_img = pygame.image.load('assets/images/quitbutton.png').convert_alpha()
 
 
-start_button = playbutton.Button(575, 300, start_img,  1)
+start_button = playbutton.Button(575, 285, start_img, 1)
 quit_button = quitbutton.Button(575, 400, quit_img, 1)
 
 run = True
