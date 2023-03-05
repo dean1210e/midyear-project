@@ -3,12 +3,14 @@ import pygame
 import random
 import math
 from spirte import Sprite
+import tkinter as tk
 
 black=(0,0,0)
 
 
     
 
+scored=False
 testlist=[]
 downdrop=False
 bouncelvl=250
@@ -34,6 +36,7 @@ reflec_trigger3=True
 stoptrig=False
 pygame.init()
 
+
 size = (500, 500)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("Basketball")
@@ -58,13 +61,13 @@ ball_height = ball.get_rect().height
 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
 
- 
+scorevariable=400
 
 
 
 
 object_ = Sprite(RED,20,20)
-object_.rect.x = WIDTH/2
+object_.rect.x = WIDTH/2+scorevariable
 object_.rect.y = HEIGHT/2
 myx=0
 myy=object_.rect.y-object_.rect.x
@@ -75,7 +78,7 @@ floor_.rect.y=HEIGHT/2+20
 
 GREEN = (SURFACE_COLOR)
 hoop_=Sprite(GREEN,35,35)
-hoop_.rect.x=random.randint(35,1415)
+hoop_.rect.x=1400
 hoop_.rect.y=HEIGHT/2-150
   
 all_sprites_list.add(object_)
@@ -88,6 +91,8 @@ clock = pygame.time.Clock()
 
 
 intdif=1
+
+
  
 # create a rectangular object for the
 
@@ -133,8 +138,8 @@ while exit:
         
 
 
+  
     
-   
     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
     
@@ -179,6 +184,8 @@ while exit:
 
         if pointstop==False:
             counter+=1
+            scored=True
+            
 
 
         print(counter)
@@ -204,13 +211,20 @@ while exit:
 
         myx=0
         downdrop=False
+
      
         testlist=[]
         stoptrig=False
         vertpy=vertpy/1.6
+        
         if vertpy<=1:
+            if scored==True:
+                scorevariable-=70*(1.1**counter)
+                scored=False
+        
             trigger=False
             movedone=True
+            object_.rect.x=WIDTH/2+scorevariable
             
 
         
