@@ -29,7 +29,7 @@ while run:
 
 
         if start_button.draw(screen):
-                print("The button works")
+                print("HELLO")
 
         if quit_button.draw(screen):
                 run = False
