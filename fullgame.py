@@ -284,11 +284,7 @@ while run:
                     
 
                 # proceed events
-                    
-                    
-                    
-                    
-                        
+    
                     pygame.display.update()
                 
                     all_sprites_list.update()
