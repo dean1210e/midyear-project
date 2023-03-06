@@ -258,15 +258,7 @@ while exit:
     
         
     pygame.display.update()
-
-
- 
-
-
-    
-
-
-    
+   
     all_sprites_list.update()
     screen.fill(SURFACE_COLOR)
     all_sprites_list.draw(screen)
