@@ -3,12 +3,23 @@ import pygame
 import random
 import math
 from spirte import Sprite
+import tkinter as tk
+
+black=(0,0,0)
+
+scored=False
 testlist=[]
 downdrop=False
 
 bouncelvl=250
 draglog=False
+pointstop=False
 
+coordx=0
+coordy=0
+
+vertpx=0
+vertpy=0
 
 COLOR = (255, 100, 98)
 SURFACE_COLOR = (167, 255, 244)
@@ -36,6 +47,23 @@ pygame.display.set_caption("Basketball")
   
 all_sprites_list = pygame.sprite.Group()
 
+background = pygame.image.load('assets/images/gamebg.jpg')
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen.blit(background,(0,0))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 hoop=pygame.image.load("assets/images/hoops.png")
 hoop_width = hoop.get_rect().width
 hoop_height =hoop.get_rect().height
@@ -47,24 +75,24 @@ ball_height = ball.get_rect().height
 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
 
- 
+scorevariable=400
 
 
 
 
 object_ = Sprite(RED,20,20)
-object_.rect.x = WIDTH/2
+object_.rect.x = WIDTH/2+scorevariable
 object_.rect.y = HEIGHT/2
 myx=0
 myy=object_.rect.y-object_.rect.x
-WHITE = (255,255,255)
-floor_=Sprite(WHITE,HEIGHT/2,WIDTH)
+BASE = background = pygame.image.load('assets/images/base.png')
+floor_=Sprite(BASE,HEIGHT/2,WIDTH)
 floor_.rect.x=0
 floor_.rect.y=HEIGHT/2+20
 
 GREEN = (SURFACE_COLOR)
 hoop_=Sprite(GREEN,35,35)
-hoop_.rect.x=random.randint(35,1415)
+hoop_.rect.x=1400
 hoop_.rect.y=HEIGHT/2-150
   
 all_sprites_list.add(object_)
@@ -76,35 +104,56 @@ trigger=False
 clock = pygame.time.Clock()
 
 
+intdif=1
+
 
  
 # create a rectangular object for the
 
 
 while exit:
+    if trigger==False:
+        pointstop=False
     ev = pygame.event.get()
     for event in ev:
 
     # handle MOUSEBUTTONUP
-        if event.type == pygame.MOUSEBUTTONUP:
-            if draglog==False:
-                trigger=False
-                movedone=True
-                draglog=True
+    
+        if draglog==True and trigger==False:
+            coordx,coordy=pygame.mouse.get_pos()
+            coordx-=10
+            vertpx=object_.rect.x+object_.rect.x-coordx
+            vertpy=(HEIGHT/2)-(object_.rect.y-coordy+object_.rect.y)
+
             
+        if event.type == pygame.MOUSEBUTTONDOWN and trigger==False:
+
+            draglog=True
+            
+        elif event.type==pygame.MOUSEBUTTONUP and trigger==False:
+            pointstop=False
+            draglog=False
+            intdif=1
+            
+       
+            if object_.rect.y-coordy>=0:
+                continue
             else:
-                stoptrig=False
-                downdrop=True
-                movedone=False
-                intdif=0
+                
+                test=vertpy/4
+                thing=vertpx-object_.rect.x
                 trigger=True
-                bouncelvl=450-object_.rect.y
-                myx=bouncelvl
-                print(bouncelvl)
-                draglog=False
-    if draglog==True:
-        object_.rect.x,object_.rect.y=pygame.mouse.get_pos()
-   
+            
+
+
+            
+
+            
+        
+
+
+  
+    
     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
     
@@ -114,31 +163,30 @@ while exit:
         if event.type == pygame.QUIT:
             exit = False
     keys = pygame.key.get_pressed()
-    if movedone==False:
-        if keys[pygame.K_LEFT] and reflec_trigger2:
-            trigger=True
-            intdif=-1
-        elif keys[pygame.K_RIGHT] and reflec_trigger1:
-            trigger = True
-            intdif=1
-        elif keys[pygame.K_UP] and reflec_trigger3:
-            trigger=True
-            intdif=0
+   
     
     
     
 
     if trigger:
+
         myx+=4
+
         
 
-        object_.rect.x += intdif*2
+        
+        
+       
+
+        if pointstop==False:
+            object_.rect.x += intdif*(thing/test)
+        
         
 
-        object_.rect.y =(1/bouncelvl)*((myx-bouncelvl)**2)+((HEIGHT/2)-bouncelvl)
+        object_.rect.y =(1/vertpy)*((myx-vertpy)**2)+((HEIGHT/2)-vertpy)
         testlist.append(object_.rect.y)
     
-    if object_.rect.y==math.floor(HEIGHT/2-bouncelvl) and hoop_.rect.y>=math.floor(HEIGHT/2-bouncelvl):
+    if object_.rect.y==math.floor(HEIGHT/2-vertpy) and hoop_.rect.y>=math.floor(HEIGHT/2-vertpy):
        
         downdrop=True
     
@@ -148,11 +196,20 @@ while exit:
     
     if hoop_.rect.x<=object_.rect.x+10<=hoop_.rect.x+35 and 315<=object_.rect.y+10<=340 and stoptrig==False and downdrop==True:
 
-        counter+=1
+        if pointstop==False:
+            counter+=1
+            scored=True
+            
+
+
+        print(counter)
+        pointstop=True
+        object_.rect.x=hoop_.rect.x+10
+        
 
 
         stoptrig=True
-        hoop_.rect.x=random.randint(0,1415)
+   
         
 
     reflec_trigger1=True
@@ -168,13 +225,20 @@ while exit:
 
         myx=0
         downdrop=False
-        print(min(testlist))
+
+     
         testlist=[]
         stoptrig=False
-        bouncelvl=bouncelvl/1.4
-        if bouncelvl<=1:
+        vertpy=vertpy/1.6
+        
+        if vertpy<=1:
+            if scored==True:
+                scorevariable-=70*(1.1**counter)
+                scored=False
+        
             trigger=False
             movedone=True
+            object_.rect.x=WIDTH/2+scorevariable
             
 
         
@@ -186,6 +250,7 @@ while exit:
      
         intdif*=-1
         reflec_trigger2=False
+        object_.rect.x=8
     
 
   # proceed events
@@ -194,7 +259,7 @@ while exit:
     
     
         
-       
+    pygame.display.update()
 
 
  
@@ -203,10 +268,17 @@ while exit:
     
 
 
-    pygame.display.update()
+    
     all_sprites_list.update()
     screen.fill(SURFACE_COLOR)
     all_sprites_list.draw(screen)
+    if draglog==True and trigger==False:
+        if vertpx-object_.rect.x>=0:
+                    pygame.draw.arc(screen,black,[object_.rect.x+8,HEIGHT/2-vertpy,2*(vertpx-object_.rect.x),HEIGHT-2*(HEIGHT/2-vertpy)],math.pi/2,math.pi,2)
+        else:
+                    pygame.draw.arc(screen,black,[object_.rect.x-2*(object_.rect.x-vertpx)+10,HEIGHT/2-vertpy,2*(object_.rect.x-vertpx),HEIGHT-2*(HEIGHT/2-vertpy)],0,math.pi/2,2)
+           
+
     
     
     clock.tick(60)
