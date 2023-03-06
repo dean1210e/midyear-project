@@ -61,10 +61,10 @@ ball_height = ball.get_rect().height
 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
 
-background1=pygame.image.load("assets/images/gamebg.png")
-background1_width = ball.get_rect().width
-background1_height = ball.get_rect().height
-background1 = pygame.transform.scale(ball, (ball_width/1, ball_height/1))
+background1=pygame.image.load("assets/images/gamebg.jpg")
+background1_width = background1.get_rect().width
+background1_height = background1.get_rect().height
+background1 = pygame.transform.scale(background1, (WIDTH, HEIGHT/2+20))
 
 scorevariable=400
 
@@ -146,7 +146,7 @@ while exit:
 
 
   
-    background1.blit(background1,(0,0))
+    screen.blit(background1,(0,0))
     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
     
