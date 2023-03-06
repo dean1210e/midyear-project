@@ -18,6 +18,7 @@ background = pygame.image.load('assets/images/menubg.jpg')
 title = pygame.image.load('assets/images/title.png')
 names = pygame.image.load('assets/images/names.png')
 
+
 start_img = pygame.image.load('assets/images/playbutton.png').convert_alpha()
 quit_img = pygame.image.load('assets/images/quitbutton.png').convert_alpha()
 x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
