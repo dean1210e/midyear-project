@@ -265,14 +265,15 @@ while run:
                             counter+=tscorer
                             tcounter+=1
                             scored=True
-
-                            # mixer.Sound("swish.mp3")
-                            # mixer.Sound.play()
+                            
 
 
+                            dog = mixer.Sound("swoosh.wav")
+                            dog.play()
+                            # mixer.music.load("swish.mp3")
+                            # mixer.music.play()
 
-                            mixer.music.load("swish.mp3")
-                            mixer.music.play()
+
 
 
                             hoopcount +=1
