@@ -7,6 +7,7 @@ import math
 from spirte import Sprite
 import tkinter as tk
 from pygame.locals import *
+from pygame import mixer
 
 screen_height = 900
 screen_width= 1440
@@ -18,6 +19,11 @@ background = pygame.image.load('assets/images/menubg.jpg')
 title = pygame.image.load('assets/images/title.png')
 names = pygame.image.load('assets/images/names.png')
 
+# mixer.music.load("backgroundmusic.mp3")
+# mixer.music.play(-1)
+pygame.mixer.init()
+mixer.music.load("backgroundmusic.mp3")
+mixer.music.play(-1)
 
 start_img = pygame.image.load('assets/images/playbutton.png').convert_alpha()
 quit_img = pygame.image.load('assets/images/quitbutton.png').convert_alpha()
@@ -43,9 +49,6 @@ while run:
         if start_button.draw(screen):
                
                 black=(0,0,0)
-
-
-                    
 
                 scored=False
                 testlist=[]
@@ -74,6 +77,7 @@ while run:
                 scorer=200
                 tscorer=200
                 stoptrig=False
+                hoopcount = 0
                 pygame.init()
 
 
@@ -90,8 +94,11 @@ while run:
                 
                 all_sprites_list = pygame.sprite.Group()
 
-                my_font=pygame.font.SysFont('Comic Sans MS',30)
+
+
+                my_font=pygame.font.SysFont('minecraftia',30)
                 text_surface=my_font.render('SCORE:'+str(counter),False,(0,0,0))
+                hoopcount_surface = my_font.render('HOOPS:'+str(hoopcount),False,(0,0,0))
 
                 hoop=pygame.image.load("assets/images/hoops.png")
                 hoop_width = hoop.get_rect().width
@@ -153,8 +160,10 @@ while run:
                 while exit:
                     if trigger==False:
                         pointstop=False
-                    my_font=pygame.font.SysFont('Comic Sans MS',30)
-                    text_surface=my_font.render('SCORE: '+str(counter),False,(0,0,0))
+                    my_font=pygame.font.SysFont('minecraftia',60)
+                    text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
+                    hoopcount_surface = my_font.render('HOOPS: '+str(hoopcount),False,(0,0,0))
+
                     ev = pygame.event.get()
                     for event in ev:
 
@@ -204,7 +213,7 @@ while run:
                     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
-                    screen.blit(text_surface,(150,550))
+                    screen.blit(text_surface,(300,550))
                     
                     
 
@@ -224,6 +233,8 @@ while run:
                         
 
                         
+
+                        
                         
                     
 
@@ -237,6 +248,11 @@ while run:
                     
                     if object_.rect.y==math.floor(HEIGHT/2-vertpy) and hoop_.rect.y>=math.floor(HEIGHT/2-vertpy):
                     
+                        hoopcount += 1
+
+                        
+
+
                         downdrop=True
                     
 
@@ -249,8 +265,18 @@ while run:
                             counter+=tscorer
                             tcounter+=1
                             scored=True
-                            
-                            
+
+                            # mixer.Sound("swish.mp3")
+                            # mixer.Sound.play()
+
+
+
+                            mixer.music.load("swish.mp3")
+                            mixer.music.play()
+
+
+                            hoopcount +=1
+               
 
 
                         print(counter)
