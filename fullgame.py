@@ -1,4 +1,4 @@
-import pygame
+import pygame, sys
 import playbutton
 import quitbutton
 import xbutton
@@ -6,6 +6,7 @@ import random
 import math
 from spirte import Sprite
 import tkinter as tk
+from pygame.locals import *
 
 screen_height = 900
 screen_width= 1440
@@ -179,7 +180,13 @@ while run:
 
                 
                     screen.blit(background1,(0,0))
+                    if draglog==True and trigger==False:
+                        if vertpx-object_.rect.x>=0:
+                                    pygame.draw.arc(screen,black,[object_.rect.x+8,HEIGHT/2-vertpy,2*(vertpx-object_.rect.x),HEIGHT-2*(HEIGHT/2-vertpy)],math.pi/2,math.pi,2)
+                        else:
+                                    pygame.draw.arc(screen,black,[object_.rect.x-2*(object_.rect.x-vertpx)+10,HEIGHT/2-vertpy,2*(object_.rect.x-vertpx),HEIGHT-2*(HEIGHT/2-vertpy)],0,math.pi/2,2)
                     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
+                    
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
                     
                     
@@ -294,13 +301,7 @@ while run:
                     all_sprites_list.update()
                     screen.fill(SURFACE_COLOR)
                     all_sprites_list.draw(screen)
-                    if draglog==True and trigger==False:
-                        if vertpx-object_.rect.x>=0:
-                                    pygame.draw.arc(screen,black,[object_.rect.x+8,HEIGHT/2-vertpy,2*(vertpx-object_.rect.x),HEIGHT-2*(HEIGHT/2-vertpy)],math.pi/2,math.pi,2)
-                        else:
-                                    pygame.draw.arc(screen,black,[object_.rect.x-2*(object_.rect.x-vertpx)+10,HEIGHT/2-vertpy,2*(object_.rect.x-vertpx),HEIGHT-2*(HEIGHT/2-vertpy)],0,math.pi/2,2)
-                        
-
+                    
                     
                     
                     clock.tick(60)
