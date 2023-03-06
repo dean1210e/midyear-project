@@ -10,6 +10,7 @@ black=(0,0,0)
 scored=False
 testlist=[]
 downdrop=False
+
 bouncelvl=250
 draglog=False
 pointstop=False
