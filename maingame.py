@@ -90,6 +90,7 @@ trigger=False
 clock = pygame.time.Clock()
 
 
+
 intdif=1
 
 
@@ -120,6 +121,7 @@ while exit:
             pointstop=False
             draglog=False
             intdif=1
+            thingy=True
             
        
             if object_.rect.y-coordy>=0:
@@ -186,6 +188,7 @@ while exit:
             counter+=1
             scored=True
             
+            
 
 
         print(counter)
@@ -216,10 +219,14 @@ while exit:
         testlist=[]
         stoptrig=False
         vertpy=vertpy/1.6
+        if scored==True and thingy==True:
+            vertpy=100
+            thingy=False
+
         
         if vertpy<=1:
             if scored==True:
-                scorevariable-=70*(1.1**counter)
+                scorevariable-=60*(1.08**counter)
                 scored=False
         
             trigger=False
