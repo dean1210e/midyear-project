@@ -26,6 +26,8 @@ start_button = playbutton.Button(575, 285, start_img, 1)
 quit_button = quitbutton.Button(575, 400, quit_img, 1)
 x_button = xbutton.Button(10, 10, x_img, 1)
 
+x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
+x_button = xbutton.Button(10, 10, x_img, 1)
 
 
 run = True
@@ -100,6 +102,10 @@ while run:
                 ball_height = ball.get_rect().height
                 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
+                x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
+                x_button = xbutton.Button(10, 10, x_img, 1)
+                if x_button.draw(screen):
+                     run = False
 
                 background1=pygame.image.load("assets/images/gamebg.jpg")
                 background1_width = background1.get_rect().width
@@ -322,6 +328,8 @@ while run:
                     clock.tick(60)
 
 
+
+
                 
                 pygame.quit()
 
@@ -329,8 +337,11 @@ while run:
         if quit_button.draw(screen):
                 run = False
 
+
         if x_button.draw(screen):
-             run = False
+            run = False
+
+
 
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
