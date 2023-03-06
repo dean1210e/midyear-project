@@ -27,6 +27,7 @@ quit_button = quitbutton.Button(575, 400, quit_img, 1)
 x_button = xbutton.Button(10, 10, x_img, 1)
 
 
+
 run = True
 while run:
         
@@ -61,11 +62,14 @@ while run:
                 WIDTH = 1440
                 HEIGHT = 900
                 counter=0
+                tcounter=0
                 multi=1
                 movedone=False
                 reflec_trigger1=True
                 reflec_trigger2=True
                 reflec_trigger3=True
+                scorer=200
+                tscorer=200
                 stoptrig=False
                 pygame.init()
 
@@ -82,6 +86,9 @@ while run:
                 pygame.display.set_caption("Basketball")
                 
                 all_sprites_list = pygame.sprite.Group()
+
+                my_font=pygame.font.SysFont('Comic Sans MS',30)
+                text_surface=my_font.render('SCORE:'+str(counter),False,(0,0,0))
 
                 hoop=pygame.image.load("assets/images/hoops.png")
                 hoop_width = hoop.get_rect().width
@@ -139,6 +146,8 @@ while run:
                 while exit:
                     if trigger==False:
                         pointstop=False
+                    my_font=pygame.font.SysFont('Comic Sans MS',30)
+                    text_surface=my_font.render('SCORE: '+str(counter),False,(0,0,0))
                     ev = pygame.event.get()
                     for event in ev:
 
@@ -188,6 +197,7 @@ while run:
                     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
+                    screen.blit(text_surface,(150,550))
                     
                     
 
@@ -229,7 +239,8 @@ while run:
                     if hoop_.rect.x<=object_.rect.x+10<=hoop_.rect.x+35 and 315<=object_.rect.y+10<=340 and stoptrig==False and downdrop==True:
 
                         if pointstop==False:
-                            counter+=1
+                            counter+=tscorer
+                            tcounter+=1
                             scored=True
                             
                             
@@ -266,11 +277,19 @@ while run:
                         if scored==True and thingy==True:
                             vertpy=100
                             thingy=False
+                        elif thingy==True:
+                            thingy=False
+                            if tscorer>50:
+                                tscorer-=50
+                             
 
                         
                         if vertpy<=1:
                             if scored==True:
-                                scorevariable-=60*(1.08**counter)
+                                
+                                scorevariable-=60*(1.08**tcounter)
+                                scorer+=100
+                                tscorer=scorer
                                 scored=False
                         
                             trigger=False
