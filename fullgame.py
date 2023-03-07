@@ -19,23 +19,18 @@ background = pygame.image.load('assets/images/menubg.jpg')
 title = pygame.image.load('assets/images/title.png')
 names = pygame.image.load('assets/images/names.png')
 
-# mixer.music.load("backgroundmusic.mp3")
-# mixer.music.play(-1)
 pygame.mixer.init()
 mixer.music.load("backgroundmusic.mp3")
 mixer.music.play(-1)
 
 start_img = pygame.image.load('assets/images/playbutton.png').convert_alpha()
 quit_img = pygame.image.load('assets/images/quitbutton.png').convert_alpha()
-x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
 
 start_button = playbutton.Button(575, 285, start_img, 1)
 quit_button = quitbutton.Button(575, 400, quit_img, 1)
-x_button = xbutton.Button(10, 10, x_img, 1)
 
 x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
 x_button = xbutton.Button(10, 10, x_img, 1)
-
 
 run = True
 while run:
@@ -44,7 +39,6 @@ while run:
         screen.blit(background,(0,0))
         screen.blit(title,(450,0))
         screen.blit(names,(500,75))
-
 
         if start_button.draw(screen):
                
@@ -80,7 +74,6 @@ while run:
                 hoopcount = 0
                 pygame.init()
 
-
                 size = (500, 500)
                 screen = pygame.display.set_mode(size)
                 pygame.display.set_caption("Basketball")
@@ -93,8 +86,6 @@ while run:
                 pygame.display.set_caption("Basketball")
                 
                 all_sprites_list = pygame.sprite.Group()
-
-
 
                 my_font=pygame.font.SysFont('minecraftia',30)
                 text_surface=my_font.render('SCORE:'+str(counter),False,(0,0,0))
@@ -111,19 +102,18 @@ while run:
                 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
 
                 x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
-                x_button = xbutton.Button(10, 10, x_img, 1)
-                if x_button.draw(screen):
-                     run = False
+                x_button = xbutton.Button(0, 830, x_img, 0.5)
 
                 background1=pygame.image.load("assets/images/gamebg.jpg")
                 background1_width = background1.get_rect().width
                 background1_height = background1.get_rect().height
                 background1 = pygame.transform.scale(background1, (WIDTH, HEIGHT/2+20))
 
+
+                
+
+
                 scorevariable=400
-
-
-
 
                 object_ = Sprite(RED,20,20)
                 object_.rect.x = WIDTH/2+scorevariable
@@ -148,21 +138,15 @@ while run:
                 trigger=False
                 clock = pygame.time.Clock()
 
-
-
                 intdif=1
 
-
-                
                 # create a rectangular object for the
-
 
                 while exit:
                     if trigger==False:
                         pointstop=False
-                    my_font=pygame.font.SysFont('minecraftia',60)
+                    my_font=pygame.font.SysFont('minecraftia',150)
                     text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
-                    hoopcount_surface = my_font.render('HOOPS: '+str(hoopcount),False,(0,0,0))
 
                     ev = pygame.event.get()
                     for event in ev:
@@ -174,8 +158,7 @@ while run:
                             coordx-=10
                             vertpx=object_.rect.x+object_.rect.x-coordx
                             vertpy=(HEIGHT/2)-(object_.rect.y-coordy+object_.rect.y)
-
-                            
+       
                         if event.type == pygame.MOUSEBUTTONDOWN and trigger==False:
 
                             draglog=True
@@ -186,7 +169,6 @@ while run:
                             intdif=1
                             thingy=True
                             
-                    
                             if object_.rect.y-coordy>=0:
                                 continue
                             else:
@@ -195,15 +177,6 @@ while run:
                                 thing=vertpx-object_.rect.x
                                 trigger=True
                             
-
-
-                            
-
-                            
-                        
-
-
-                
                     screen.blit(background1,(0,0))
                     if draglog==True and trigger==False:
                         if vertpx-object_.rect.x>=0:
@@ -213,52 +186,29 @@ while run:
                     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
-                    screen.blit(text_surface,(300,550))
+                    screen.blit(text_surface,(500,625))
                     
-                    
-
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
                             exit = False
                     keys = pygame.key.get_pressed()
                 
-                    
-                    
-                    
-
                     if trigger:
 
                         myx+=4
 
-                        
-
-                        
-
-                        
-                        
-                    
-
                         if pointstop==False:
                             object_.rect.x += intdif*(thing/test)
                         
-                        
-
                         object_.rect.y =(1/vertpy)*((myx-vertpy)**2)+((HEIGHT/2)-vertpy)
                         testlist.append(object_.rect.y)
                     
                     if object_.rect.y==math.floor(HEIGHT/2-vertpy) and hoop_.rect.y>=math.floor(HEIGHT/2-vertpy):
                     
-                        hoopcount += 1
-
-                        
-
 
                         downdrop=True
                     
 
-
-                
-                    
                     if hoop_.rect.x<=object_.rect.x+10<=hoop_.rect.x+35 and 315<=object_.rect.y+10<=340 and stoptrig==False and downdrop==True:
 
                         if pointstop==False:
@@ -266,20 +216,9 @@ while run:
                             tcounter+=1
                             scored=True
                             
-
-
                             dog = mixer.Sound("swoosh.wav")
                             dog.play()
-                            # mixer.music.load("swish.mp3")
-                            # mixer.music.play()
-
-
-
-
-                            hoopcount +=1
-               
-
-
+                                           
                         print(counter)
                         pointstop=True
                         object_.rect.x=hoop_.rect.x+10
@@ -355,7 +294,8 @@ while run:
                     
                     clock.tick(60)
 
-
+                    if x_button.draw(screen):
+                        run = False
 
 
                 
