@@ -144,6 +144,8 @@ while run:
                     if trigger==False:
                         pointstop=False
                     my_font=pygame.font.SysFont('minecraftia',150)
+                    my_font1=pygame.font.SysFont('minecraftia',100)
+                    
                     
 
                     if time >0:
@@ -154,7 +156,7 @@ while run:
                     if time<=0:
                         
                         final=True
-                        text_surface1=my_font.render("TIME'S UP! Your final score: "+str(counter),False,(0,0,0) )
+                        text_surface1=my_font1.render("TIME'S UP! Your final score: "+str(counter),False,(0,0,0) )
                   
 
                     ev = pygame.event.get()
