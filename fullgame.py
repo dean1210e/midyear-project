@@ -150,7 +150,7 @@ while run:
 
                     if time >0:
                         time-=1
-                        text_surface1=my_font.render('TIME: '+str(math.floor(time/3600))+":"+str(math.floor((time%3600)/600)),False,(0,0,0))
+                        text_surface1=my_font.render('TIME: '+str(math.floor(time/3600))+":"+f"{(math.floor((time%3600)/60)):03d}",False,(0,0,0))
                     text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
                     
                     if time<=0:
