@@ -29,9 +29,6 @@ quit_img = pygame.image.load('assets/images/quitbutton.png').convert_alpha()
 start_button = playbutton.Button(575, 285, start_img, 1)
 quit_button = quitbutton.Button(575, 400, quit_img, 1)
 
-x_img = pygame.image.load('assets/images/x_button.png').convert_alpha()
-x_button = xbutton.Button(10, 10, x_img, 1)
-
 run = True
 while run:
         
@@ -304,12 +301,6 @@ while run:
 
         if quit_button.draw(screen):
                 run = False
-
-
-        if x_button.draw(screen):
-            run = False
-
-
 
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
