@@ -40,7 +40,7 @@ while run:
         if start_button.draw(screen):
                
                 black=(0,0,0)
-
+                time=180
                 scored=False
                 testlist=[]
                 downdrop=False
@@ -144,6 +144,7 @@ while run:
                         pointstop=False
                     my_font=pygame.font.SysFont('minecraftia',150)
                     text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
+                  
 
                     ev = pygame.event.get()
                     for event in ev:
@@ -293,6 +294,7 @@ while run:
 
                     if x_button.draw(screen):
                         run = False
+                        exit=False
 
 
                 
@@ -300,11 +302,13 @@ while run:
 
 
         if quit_button.draw(screen):
+                exit=False
                 run = False
 
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         run = False
+                        exit=False
 
         pygame.display.update()
 
