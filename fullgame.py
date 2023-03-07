@@ -152,7 +152,7 @@ while run:
                     text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
                     
                     if time<=0:
-                        trigger=False
+                        
                         final=True
                         text_surface1=my_font.render("TIME'S UP! Your final score: "+str(counter),False,(0,0,0) )
                   
@@ -196,7 +196,10 @@ while run:
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
                     screen.blit(text_surface,(450,525))
-                    screen.blit(text_surface1,(450,700))
+                    if time >0:
+                        screen.blit(text_surface1,(450,700))
+                    else:
+                        screen.blit(text_surface1,(250,700))
                     
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
