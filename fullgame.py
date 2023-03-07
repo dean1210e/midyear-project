@@ -40,7 +40,7 @@ while run:
         if start_button.draw(screen):
                
                 black=(0,0,0)
-                time=180
+                time=3600
                 scored=False
                 testlist=[]
                 downdrop=False
@@ -143,7 +143,9 @@ while run:
                     if trigger==False:
                         pointstop=False
                     my_font=pygame.font.SysFont('minecraftia',150)
+                    time-=1
                     text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
+                    text_surface1=my_font.render('TIME: '+str(math.floor(time/3600))+":"+str(math.floor(time/60)),False,(0,0,0))
                   
 
                     ev = pygame.event.get()
@@ -184,7 +186,8 @@ while run:
                     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
-                    screen.blit(text_surface,(450,625))
+                    screen.blit(text_surface,(450,525))
+                    screen.blit(text_surface,(450,700))
                     
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
