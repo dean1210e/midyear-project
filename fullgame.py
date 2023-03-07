@@ -93,7 +93,7 @@ while run:
                 hoop_height =hoop.get_rect().height
                 hoop = pygame.transform.scale(hoop, (hoop_width/6, hoop_height/6))
 
-                ball = pygame.image.load("assets/images/basketball.png")
+                ball = pygame.image.load("assets/images/basketball1.png")
                 ball_width = ball.get_rect().width
                 ball_height = ball.get_rect().height
                 ball = pygame.transform.scale(ball, (ball_width/7, ball_height/7))
@@ -183,7 +183,7 @@ while run:
                     screen.blit(ball, (object_.rect.x-8.5,object_.rect.y-15))
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
-                    screen.blit(text_surface,(500,625))
+                    screen.blit(text_surface,(450,625))
                     
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
