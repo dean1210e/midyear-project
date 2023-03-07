@@ -201,7 +201,7 @@ while run:
                     if time >0:
                         screen.blit(text_surface1,(450,700))
                     else:
-                        screen.blit(text_surface1,(50,700))
+                        screen.blit(text_surface1,(150,700))
                     
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
