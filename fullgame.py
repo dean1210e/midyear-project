@@ -187,7 +187,7 @@ while run:
                     
                     screen.blit(hoop, (hoop_.rect.x-14.5,hoop_.rect.y-15))
                     screen.blit(text_surface,(450,525))
-                    screen.blit(text_surface,(450,700))
+                    screen.blit(text_surface1,(450,700))
                     
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
