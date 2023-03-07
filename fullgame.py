@@ -42,6 +42,7 @@ while run:
                 black=(0,0,0)
                 time=3600
                 scored=False
+                final=False
                 testlist=[]
                 downdrop=False
                 bouncelvl=250
@@ -143,9 +144,17 @@ while run:
                     if trigger==False:
                         pointstop=False
                     my_font=pygame.font.SysFont('minecraftia',150)
-                    time-=1
+                    
+
+                    if time >0:
+                        time-=1
+                        text_surface1=my_font.render('TIME: '+str(math.floor(time/3600))+":"+str(math.floor(time/60)),False,(0,0,0))
                     text_surface = my_font.render('SCORE: '+str(counter),False,(0,0,0))
-                    text_surface1=my_font.render('TIME: '+str(math.floor(time/3600))+":"+str(math.floor(time/60)),False,(0,0,0))
+                    
+                    if time<=0:
+                        trigger=False
+                        final=True
+                        text_surface1=my_font.render("TIME'S UP! Your final score: "+str(counter),False,(0,0,0) )
                   
 
                     ev = pygame.event.get()
@@ -153,17 +162,17 @@ while run:
 
                     # handle MOUSEBUTTONUP
                     
-                        if draglog==True and trigger==False:
+                        if draglog==True and trigger==False and final==False:
                             coordx,coordy=pygame.mouse.get_pos()
                             coordx-=10
                             vertpx=object_.rect.x+object_.rect.x-coordx
                             vertpy=(HEIGHT/2)-(object_.rect.y-coordy+object_.rect.y)
        
-                        if event.type == pygame.MOUSEBUTTONDOWN and trigger==False:
+                        if event.type == pygame.MOUSEBUTTONDOWN and trigger==False and final==False:
 
                             draglog=True
                             
-                        elif event.type==pygame.MOUSEBUTTONUP and trigger==False:
+                        elif event.type==pygame.MOUSEBUTTONUP and trigger==False and final==False:
                             pointstop=False
                             draglog=False
                             intdif=1
