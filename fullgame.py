@@ -2,6 +2,7 @@ import pygame, sys
 import playbutton
 import quitbutton
 import xbutton
+import playagain
 import random
 import math
 from spirte import Sprite
@@ -28,6 +29,7 @@ quit_img = pygame.image.load('assets/images/quitbutton.png').convert_alpha()
 
 start_button = playbutton.Button(575, 285, start_img, 1)
 quit_button = quitbutton.Button(575, 400, quit_img, 1)
+entered=True
 
 run = True
 while run:
@@ -40,7 +42,7 @@ while run:
         if start_button.draw(screen):
                
                 black=(0,0,0)
-                time=9000
+                time=300
                 scored=False
                 final=False
                 testlist=[]
@@ -85,7 +87,7 @@ while run:
                 
                 all_sprites_list = pygame.sprite.Group()
 
-                my_font=pygame.font.SysFont('minecraftia',30)
+                my_font=pygame.font.SysFont("minecraftia",30)
                 text_surface=my_font.render('SCORE:'+str(counter),False,(0,0,0))
                 hoopcount_surface = my_font.render('HOOPS:'+str(hoopcount),False,(0,0,0))
 
@@ -157,7 +159,14 @@ while run:
                         
                         final=True
                         text_surface1=my_font1.render("TIME'S UP! Your final score: "+str(counter),False,(0,0,0) )
-                  
+                        
+                        playagain_img = pygame.image.load('assets/images/playagain.png').convert_alpha()
+                        playagain_button = playagain.Button(215, 700, playagain_img, 1)
+
+                        if playagain_button.draw(screen):
+                            run = False
+                            exit=False
+
 
                     ev = pygame.event.get()
                     for event in ev:
@@ -201,7 +210,7 @@ while run:
                     if time >0:
                         screen.blit(text_surface1,(450,700))
                     else:
-                        screen.blit(text_surface1,(150,700))
+                        screen.blit(text_surface1,(200,650))
                     
                     for event in pygame.event.get():
                         if event.type == pygame.QUIT:
