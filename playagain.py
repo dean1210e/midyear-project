@@ -146,7 +146,7 @@ class Button():
                                     text_surface1=my_font1.render("TIME'S UP! Your final score: "+str(counter),False,(0,0,0) )
                                     
                                     playagain_img = pygame.image.load('assets/images/playagain.png').convert_alpha()
-                                    playagain_button = playagain.Button(215, 700, playagain_img, 1)
+                                    playagain_button = playagain.Button(650, 720, playagain_img, 1)
 
                                     if playagain_button.draw(screen):
                                         run = False
