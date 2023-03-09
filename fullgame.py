@@ -42,7 +42,7 @@ while run:
         if start_button.draw(screen):
                
                 black=(0,0,0)
-                time=300
+                time=9000
                 scored=False
                 final=False
                 testlist=[]

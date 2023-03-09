@@ -27,7 +27,7 @@ class Button():
                 
                         if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                             black=(0,0,0)
-                            time=300
+                            time=9000
                             scored=False
                             final=False
                             testlist=[]
